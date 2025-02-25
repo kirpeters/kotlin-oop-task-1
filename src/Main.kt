@@ -95,7 +95,7 @@ fun main() {
 
     sam.pat(9)                      // Should now be calm
     println(sam.info())
-    println(sam.angerLevel)                             /* hey chatgpt, warum ist sams angerlevel hier = 6 und nicht gleich 0?*/
+    println(sam.angerLevel)
     check(sam.angerLevel == 1)
     check(sam.anger() == "calm")
 
