@@ -95,6 +95,7 @@ fun main() {
 
     sam.pat(9)                      // Should now be calm
     println(sam.info())
+    println(sam.angerLevel)                             /* hey chatgpt, warum ist sams angerlevel hier = 6 und nicht gleich 0?*/
     check(sam.angerLevel == 1)
     check(sam.anger() == "calm")
 
@@ -121,6 +122,7 @@ fun main() {
 class Gnome(val name: String, var activity: String) {
     var angerLevel = 1
 
+
     init {
         println("Creating a gnome... $name")
     }
@@ -130,7 +132,7 @@ class Gnome(val name: String, var activity: String) {
      *  NAME is ACTIVITY and is ANGER WORD
      */
     fun info(): String {
-        return ""
+        return "$name is $activity and is ${anger()}"
     }
 
     /**
@@ -142,7 +144,25 @@ class Gnome(val name: String, var activity: String) {
      * - 9-10 -> apoplectic
      */
     fun anger(): String {
-        return ""
+        if (angerLevel == 1 ||angerLevel == 2 ){
+            return "calm"
+        }
+        if (angerLevel == 3 || angerLevel == 4 ){
+            return "annoyed"
+        }
+        if (angerLevel == 5 || angerLevel == 6 ){
+            return "angry"
+        }
+        if (angerLevel == 7 || angerLevel == 8 ){
+            return "furious"
+        }
+        if (angerLevel == 9 || angerLevel == 10 ){
+            return "apoplectic"
+        }else{
+            return "Anger Level out of range, get control over your fcking gnomes dude"
+        }
+
+
     }
 
     /**
@@ -151,6 +171,13 @@ class Gnome(val name: String, var activity: String) {
      * every poke, up to a max of 10
      */
     fun poke(numPokes: Int) {
+        var newAngerLevel = numPokes + angerLevel
+        angerLevel = newAngerLevel
+
+        if (angerLevel >= 11){
+            angerLevel = 10
+        }
+
         println("$name gets poked $numPokes times...")
 
 
@@ -165,6 +192,17 @@ class Gnome(val name: String, var activity: String) {
      * will go to 10 instantly!
      */
     fun pat(numPats: Int) {
+        if (numPats >= 10){
+            angerLevel = 10}
+        else{
+            val newAngerLevel = angerLevel - numPats
+            if (newAngerLevel >= 1){
+                angerLevel = newAngerLevel
+            }else{
+                angerLevel = 1
+            }
+
+        }
         println("$name gets patted $numPats times...")
 
 
